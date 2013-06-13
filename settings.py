@@ -91,7 +91,11 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    '/app/django_multihost/templates',
 )
+TEMPLATE_MULTIHOST1_DIR = '%s/multihost1' % TEMPLATE_DIRS[0]
+TEMPLATE_MULTIHOST2_DIR = '%s/multihost2' % TEMPLATE_DIRS[0]
+TEMPLATE_MULTIHOST3_DIR = '%s/multihost3' % TEMPLATE_DIRS[0]
 
 INSTALLED_APPS = (
     'django.contrib.auth',
