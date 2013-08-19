@@ -1,12 +1,16 @@
 from django.conf import settings
 from django.utils.cache import patch_vary_headers
 
+HTTP_SERVER_HOST = 'HTTP_HOST'
 HOST_PORT_SEPARATOR = ':'
 
 class MultiHostMiddleware(object):
 
     def process_request(self, request):
-        host = request.META['HTTP_HOST']
+        if not HTTP_SERVER_HOST in request.META:
+            request.urlconf = settings.ROOT_URLCONF
+            return
+        host = request.META[HTTP_SERVER_HOST]
         host = self._host_remove_port(host)
         try:
             request.urlconf = settings.MULTIHOST_URLCONF[host]
